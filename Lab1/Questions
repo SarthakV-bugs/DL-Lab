@@ -1,0 +1,4 @@
+2. zero centered holds the similar concept as standardization, check the mean of all the functions if it's zero??
+3. saturation of the functions at extreme values for sigmoid, tanh and ReLU, what happens to the gradient?
+    sigmoid gradient becomes zero, thus no learning will happen, therefore no sigmoid
+##computational cost is less in ReLU as cost of calculating max is less than the cost of exp.

@@ -1,0 +1,9 @@
+1. no. of hidden layers
+2. no. of neurons in the hidden layer
+3. take weight and input from user #handle the dimensions
+4. type of activation function
+5. linear function z and activation function within the neuron
+
+##class consisting of functions
+##define a single neuron which takes param like activation function,input value and weights
+##number of weights from the input data and the number of neurons needed

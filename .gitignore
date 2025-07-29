@@ -1,0 +1,15 @@
+# Ignore PyTorch model weight files
+*.pth
+
+# Ignore zipped datasets
+*.zip
+
+# Ignore specific large data directories
+data/
+Lab6/faces/
+
+# Ignore Python compiled files
+__pycache__/
+
+# Ignore Jupyter notebook checkpoints
+*.ipynb_checkpoints/
