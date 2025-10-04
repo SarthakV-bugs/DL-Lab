@@ -15,6 +15,8 @@ class ConstantNode(Node):
     def forward_pass(self):
         return self.value
 
+    def backward_pass(self):
+        return 0
 
 
 class VariableNode(Node):
