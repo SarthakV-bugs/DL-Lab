@@ -1,6 +1,6 @@
 import numpy as np
 
-def weight_initilization(number_hidden_layers, num_neurons_each_layer,input_l):
+def weight_initialization(number_hidden_layers, num_neurons_each_layer, input_l):
     
     weights = [] #3D matrix to store the weights as a dot prod. of input layer and the neurons
     for i in range(number_hidden_layers): #iterated each layer 
@@ -47,8 +47,8 @@ def main():
     number_hidden_layers = 2 ##int
     num_neurons_each_layer = [3,2] #list of numbers denoting neurons in each hidden layer
 
-    print(weight_initilization(number_hidden_layers, num_neurons_each_layer,input_l))
-    weights = weight_initilization(number_hidden_layers, num_neurons_each_layer,input_l)
+    print(weight_initialization(number_hidden_layers, num_neurons_each_layer, input_l))
+    weights = weight_initialization(number_hidden_layers, num_neurons_each_layer, input_l)
     print(type(weights))
 
     print(flow(number_hidden_layers, num_neurons_each_layer,input_l,weights))

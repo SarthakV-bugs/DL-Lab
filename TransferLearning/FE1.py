@@ -7,8 +7,8 @@ from torchvision.models import ResNet18_Weights
 import torch.nn as nn
 import os
 #set proxy for script
-os.environ['HTTP_PROXY']  = "http://245hsbd009%40ibab.ac.in:verma1903@proxy.ibab.ac.in:3128/"
-os.environ['HTTPS_PROXY'] = "http://245hsbd009%40ibab.ac.in:verma1903@proxy.ibab.ac.in:3128/"
+# os.environ['HTTP_PROXY']  = "http://245hsbd009%40ibab.ac.in:verma1903@proxy.ibab.ac.in:3128/"
+# os.environ['HTTPS_PROXY'] = "http://245hsbd009%40ibab.ac.in:verma1903@proxy.ibab.ac.in:3128/"
 
 # transforms
 transform = transforms.Compose([
