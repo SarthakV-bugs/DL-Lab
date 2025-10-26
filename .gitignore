@@ -13,3 +13,7 @@ __pycache__/
 
 # Ignore Jupyter notebook checkpoints
 *.ipynb_checkpoints/
+
+# Ignore flick8k dataset
+Lab15/flickr8k/
+

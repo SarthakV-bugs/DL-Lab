@@ -1,4 +1,7 @@
-##Feature extraction from the Flickr8 dataset using pre-trained models
+##Part A) Feature extraction from the Flickr8 dataset using pre-trained models
+
+##Numerical representation for the images in flickr8k dataset 
+
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -32,7 +35,7 @@ class Flickr8kCustom(Dataset):
         #load the captions
         self.data = []
         with open(caption_file, 'r') as f:
-            next(f)  # Skip the header line
+            next(f)  # Skip the header line, consists of image, caption headings
             for line in f:
                 img_name, caption = line.strip().split(',',1)
                 img_path = os.path.join(img_dir, img_name)
@@ -49,7 +52,7 @@ class Flickr8kCustom(Dataset):
                 self.grouped[img_path] = [] #first time seeing the img, initialize an empty list
             self.grouped[img_path].append(caption) #add the caption to this image list in the dict
 
-        self.images = list(self.grouped.keys())
+        self.images = list(self.grouped.keys()) #keys comprises of the images and values correspond to the caption
         print(f"Loaded {len(self.images)} images with {len(self.data)} captions")
 
 
@@ -76,9 +79,7 @@ data = Flickr8kCustom(
 )
 
 #dataloader
-
 dataloader = DataLoader(dataset=data, batch_size=32, shuffle=True)
-
 
 #use RESnet18 model with pre-trained weights for feature extraction
 model = models.resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
@@ -103,8 +104,27 @@ model.eval()
 print(f"ResNet18 feature dimension: {feature_dim}")
 print(f"Projection: {feature_dim} -> {embed_size}")
 
+features_dict = {}
 
+#extraction loop
+with torch.no_grad():
+    for batch_idx, (images, captions) in enumerate(dataloader):
+        # images shape: [batch_size, 3, 224, 224]
+        features = model(images)  # [batch_size, 512]
+        projected_features = img_proj(features)  # [batch_size, 256]
 
+        # Store each image's features
+        for i in range(len(images)):
+            img_idx = batch_idx * dataloader.batch_size + i
+            if img_idx < len(data):
+                img_path = data.images[img_idx]
+                features_dict[img_path] = projected_features[i]
+
+        if (batch_idx + 1) % 10 == 0:
+            print(f"Processed {batch_idx + 1} batches")
+
+    torch.save(features_dict, 'flickr8k_features.pth')
+    print(f"Features saved to 'flickr8k_features.pth'")
 
 
 
