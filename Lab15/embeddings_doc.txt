@@ -1,0 +1,36 @@
+Create a numerical representation for the text in captions file
+
+
+##Note on embeddings
+Mathematically, an embedding space, or latent space, is defined as a manifold in which similar items are positioned closer to one another than less similar items. 
+In this case, sentences that are semantically similar should have similar embedded vectors and thus be closer together in the space.
+
+Different distance metrics out there, but these two, Euclidean distance and cosine distance, are the two you’ll run into most often and will serve well enough for developing your intuition.
+
+steps:
+1) Create a vocabulary
+    Tokenize the captions(split words) -> build a vocab of unique words -> map words -> integer idx
+    tokenizer("A Dog Runs Fast") → ['a', 'dog', 'runs', 'fast'] #split a sentence into individual words
+    vocab = {'<PAD>':0, '<SOS>':1, '<EOS>':2, '<UNK>':3, 'a':4, 'dog':5, 'on':6, 'grass':7, ...}
+
+2) Numericalization of the word results in a sequence of numbers for the words, but it's not vectors
+    Neural networks cannot work directly with integers representing words.
+    The network expects dense vectors (tensors of floats) as input.
+    Integers like [4,5,6] have no inherent similarity:
+    4 and 5 might be similar in meaning (dog and puppy), but the network sees them as completely different numbers.
+    We need a way to convert each word ID into a dense, learnable vector.
+
+
+##Numericalization is not sufficient to perform further operations, the integer lists are converted into tensors
+3) Embedding using nn.embedding layer of torch
+    Expects the input to be in a tensor form
+    converting list of list to tensor requires padding, as tensors doesnt support conversion for list of different length
+    
+
+4) List of strings
+     ↓
+List of integer sequences (tokenized captions)
+     ↓
+Padded tensor (batch × seq_len)
+     ↓
+Word embeddings (batch × seq_len × 256)
