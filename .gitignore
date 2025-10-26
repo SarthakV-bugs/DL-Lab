@@ -17,3 +17,8 @@ __pycache__/
 # Ignore flick8k dataset
 Lab15/flickr8k/
 
+# Ignore these large files
+Lab15/flickr8k.zip
+Lab15/captions_embeddings.pt
+captions_embeddings.pt
+
