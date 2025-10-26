@@ -14,6 +14,7 @@ __pycache__/
 # Ignore Jupyter notebook checkpoints
 *.ipynb_checkpoints/
 
+<<<<<<< HEAD
 # Ignore flick8k dataset
 Lab15/flickr8k/
 
@@ -24,3 +25,13 @@ captions_embeddings.pt
 
 Lab15/captions_embeddings.pt
 Lab15/flickr8k.zip
+=======
+# Ignore Lab15 huge data and checkpoints
+
+Lab15/Lab15
+Lab15/flickr8k.zip
+Lab15/flickr8k
+Lab15/captions_embeddings.pt
+Lab15/flickr8k_features.pth
+captions_embeddings.pt
+
