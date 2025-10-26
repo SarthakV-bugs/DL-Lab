@@ -1,0 +1,36 @@
+#define the input and output of what th model is expected to do
+input <- feature vectors from the image and embeddings from text
+output -> Image with image captioning associated with input
+
+#shapes of the feature and sentence embedding
+| Tensor         | Shape              | Meaning                                                                                |
+| :------------- | :----------------- | :------------------------------------------------------------------------------------- |
+| `img_features` | `[1, 256]`         | One image feature vector of dimension 256                                              |
+| `captions`     | `[40455, 38, 256]` | 40,455 caption sequences (batch), each 38 tokens long, each token of embedding dim 256 |
+
+
+
+#encoder -> image feature extraction using ResNET18
+            embeddings from the captions
+
+#decoder -> RNN 
+    At time step 0 (the first RNN block):
+    Input → embedding of <start> token
+    Hidden state (h₀) → derived from the image features
+
+    h₀ = W_h * image_features + b_h
+    x₀ = embedding(<start>)
+    h1 = RNN(x0, h0)
+
+
+    At time step t=1, the RNN outputs a hidden state and predicts a probability distribution over the vocabulary (i.e., possible next words):
+    p(y₁ | image, <start>) = softmax(W_out * h₁)
+
+
+    | Step | Input to RNN        | Hidden State           | Output Prediction |
+    | ---- | ------------------- | ---------------------- | ----------------- |
+    | 0    | `<start>` embedding | initialized from image | “A”               |
+    | 1    | “A” embedding       | from step 0            | “dog”             |
+    | 2    | “dog” embedding     | from step 1            | “playing”         |
+    | 3    | “playing” embedding | from step 2            | “in”              |
+    | ...  | ...                 | ...                    | ...               |
