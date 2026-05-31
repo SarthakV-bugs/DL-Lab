@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DL-Lab.iml" filepath="$PROJECT_DIR$/.idea/DL-Lab.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/DL_datasets/.idea/DL_datasets.iml" filepath="$USER_HOME$/Desktop/DL_datasets/.idea/DL_datasets.iml" />
     </modules>
   </component>
 </project>
