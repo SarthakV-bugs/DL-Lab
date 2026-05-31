@@ -35,3 +35,13 @@ Lab15/captions_embeddings.pt
 Lab15/flickr8k_features.pth
 Lab15/captions_embeddings.pt
 
+captions_embeddings.pt
+*.pt
+*.pth
+.venv/
+venv/
+*.zip
+*.tar.gz
+*.tgz
+*.pt
+*.pth
